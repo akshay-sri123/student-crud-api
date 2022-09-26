@@ -7,6 +7,7 @@ from flask import request
 
 from datetime import datetime
 
+
 app = create_app()
 
 @app.route('/', methods=['GET'])
