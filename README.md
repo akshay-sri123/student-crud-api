@@ -1,6 +1,6 @@
 # student-crud-api
 
-Simple CRUD (Create, Read, Update, Delete) Rest API implementation.
+Simple CRUD (Create, Read, Update, Delete) REST API implementation.
 
 ## How to run
 
