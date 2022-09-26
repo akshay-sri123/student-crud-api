@@ -25,3 +25,24 @@ GRANT ALL PRIVILEGES ON DATABASE student_crud_api TO app_user;
 - To run on local: `make app_run_local`
 - To run via docker: `make app_run_docker`
 - To run via docker-compose: `app_run_docker_compose`
+
+### Access the API
+
+- Get
+```
+curl -s --location --request GET 'http://127.0.0.1:5000/'
+```
+
+- Add
+```
+curl --location --request POST '127.0.0.1:5000/add' \ 
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "address": "Mon Cala",
+    "email_id": "elder_squid@moncala.marai",
+    "gender": "Male",
+    "name": "Admiral Ackbar",
+    "date_of_birth": "3028-09-11"
+}'
+
+```
