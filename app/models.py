@@ -1,8 +1,10 @@
 import flask_sqlalchemy
 import enum
 from datetime import datetime
+from flask_migrate import Migrate
 
 db = flask_sqlalchemy.SQLAlchemy()
+migrate =  Migrate()
 
 class GenderEnum(enum.Enum):
     Male = 'Male' 

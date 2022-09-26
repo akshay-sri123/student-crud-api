@@ -1,7 +1,7 @@
 from flask import Flask
 import logging
 
-from .models import db
+from .models import db, migrate
 from . import config
 
 def create_app():
@@ -12,4 +12,5 @@ def create_app():
     flask_app.app_context().push()
     db.init_app(flask_app)
     db.create_all()
+    migrate.init_app(flask_app, db)
     return flask_app
