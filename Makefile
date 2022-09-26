@@ -16,4 +16,4 @@ app_run_docker_compose:
 	docker-compose up -d
 
 app_run_local:
-	DB_USERNAME="app_user" DB_PASSWORD="app_pass123" flask run
+	FLASK_APP=app/app.py DB_USERNAME="app_user" DB_PASSWORD="app_pass123" flask run
