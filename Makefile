@@ -1,9 +1,8 @@
 virtualenv:
 	pip3 install virtualenv
 	virtualenv .venv
-	source .venv/bin/activate
 
-requirements: virtualenv
+requirements:
 	pip3 install -r requirements.txt
 
 docker_build:
