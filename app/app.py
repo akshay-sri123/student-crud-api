@@ -10,7 +10,7 @@ from datetime import datetime
 
 app = create_app()
 
-@app.route('/', methods=['GET'])
+@app.route('/get', methods=['GET'])
 def get():
     students = database.get_all(Students)
     print("students")
@@ -50,3 +50,20 @@ def add():
                                     updated_at = datetime.now())
     
     return json.dumps("Added"), 200
+
+
+@app.route('/get/<student_id>', methods=['GET'])
+def get_by_id(student_id):
+    student = database.get_by_id(Students, student_id)[0]
+    student_info = {
+        "id" : student.id,
+        "name" : student.name,
+        "date_of_birth" : student.date_of_birth,
+        "gender" : student.gender,
+        "email_id" : student.email_id,
+        "address" : student.address,
+        "created_at" : student.created_at,
+        "updated_at" : student.updated_at
+    }
+
+    return json.dumps(student_info, default=str), 200
