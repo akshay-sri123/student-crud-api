@@ -54,7 +54,7 @@ def add():
 
 @app.route('/get/<student_id>', methods=['GET'])
 def get_by_id(student_id):
-    student = database.get_by_id(Students, student_id)[0]
+    student = database.get_by_id(Students, student_id)
     student_info = {
         "id" : student.id,
         "name" : student.name,
@@ -67,3 +67,8 @@ def get_by_id(student_id):
     }
 
     return json.dumps(student_info, default=str), 200
+
+@app.route('/del/<student_id>', methods=['DELETE'])
+def delete_by_id(student_id):
+    database.delete_by_id(Students, student_id)
+    return json.dumps("{ 'deleted': 'true' }"), 200

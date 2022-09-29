@@ -6,8 +6,12 @@ def get_all(model):
     return data
 
 def get_by_id(model, id):
-    data = model.query.filter_by(id=id)
+    data = model.query.filter_by(id=id).first()
     return data
+
+def delete_by_id(model, id):
+    model.query.filter_by(id=id).delete()
+    commit_changes()
 
 def add_students(model, **kwargs):
     student = model(**kwargs)
