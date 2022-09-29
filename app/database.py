@@ -1,5 +1,5 @@
 from .models import db
-
+from datetime import datetime
 
 def get_all(model):
     data = model.query.all()
@@ -8,6 +8,11 @@ def get_all(model):
 def get_by_id(model, id):
     data = model.query.filter_by(id=id).first()
     return data
+
+def update_by_id(model, id, **kwargs):
+    updated_student = model(**kwargs)
+    db.session.query(model).filter_by(id=id).update(dict(**kwargs))
+    commit_changes()
 
 def delete_by_id(model, id):
     model.query.filter_by(id=id).delete()

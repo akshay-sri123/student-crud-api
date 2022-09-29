@@ -71,4 +71,24 @@ def get_by_id(student_id):
 @app.route('/del/<student_id>', methods=['DELETE'])
 def delete_by_id(student_id):
     database.delete_by_id(Students, student_id)
-    return json.dumps("{ 'deleted': 'true' }"), 200
+    return json.dumps("Deleted"), 200
+ 
+@app.route('/update/<student_id>', methods=['PUT'])
+def update_by_id(student_id):
+    request_data = request.get_json()
+    
+    name = request_data['name']
+    date_of_birth = datetime.strptime(str(request_data['date_of_birth']), '%Y-%m-%d')
+    gender = request_data['gender']
+    email_id= request_data['email_id']
+    address = request_data['address']
+    
+    database.update_by_id(Students, student_id, name = name,
+                                    date_of_birth = date_of_birth,
+                                    gender = gender,
+                                    email_id = email_id,
+                                    address = address,
+                                    created_at = datetime.now(),
+                                    updated_at = datetime.now())
+    
+    return json.dumps("Updated"), 200
