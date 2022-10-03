@@ -6,6 +6,26 @@ services:
     environment:
       DB_USERNAME: app_user
       DB_PASSWORD: app_pass123
-      DB_HOST: "127.0.0.1"
-    network_mode: "host"
+      DB_HOST: postgres
+    # network_mode: "host"
+    ports:
+      - "5000:5000"
     restart: always
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=app_pass123
+      - POSTGRES_USER=app_user
+      - POSTGRES_DB=student_crud_api
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/db.sql
+      # - pgdata:/var/lib/postgresql/data
+
+# volumes:
+#   pgdata: {}
