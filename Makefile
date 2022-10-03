@@ -19,3 +19,6 @@ app_run_local:
 
 initial_migration:
 	DB_HOST="127.0.0.1" DB_USERNAME="app_user" DB_PASSWORD="app_pass123" flask db init && flask db stamp head && flask db migrate && flask db upgrade
+
+app_run_docker_compose: docker_build
+	docker-compose -f local-dev-compose.yaml up

@@ -7,11 +7,15 @@ services:
       DB_USERNAME: app_user
       DB_PASSWORD: app_pass123
       DB_HOST: postgres
+      FLASK_DEBUG: "1" 
+    entrypoint: [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
     ports:
       - "5000:5000"
     restart: always
     depends_on:
       - postgres
+    volumes:
+      - ./:/app
 
   postgres:
     container_name: postgres
@@ -24,3 +28,7 @@ services:
       - POSTGRES_DB=student_crud_api
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/db.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
