@@ -1,8 +1,8 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: CI
+run-name: ${{ github.actor }} is running CI 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  CI:
     runs-on: self-hosted
     steps:
       - name: Check out repository code
