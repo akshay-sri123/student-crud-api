@@ -1,17 +1,25 @@
-import flask_sqlalchemy
-import enum
 from datetime import datetime
+import enum
+import flask_sqlalchemy
 from flask_migrate import Migrate
 
 db = flask_sqlalchemy.SQLAlchemy()
 migrate =  Migrate()
 
+
 class GenderEnum(enum.Enum):
-    Male = 'Male' 
-    Female = 'Female'
-    Other = 'Other'
+    """
+    Enum for the gender field
+    """
+    MALE = 'Male'
+    FEMALE = 'Female'
+    OTHER = 'Other'
+
 
 class Students(db.Model):
+    """
+    DB class for students
+    """
     __tablename__ = 'students'
 
     id = db.Column(db.Integer, primary_key=True)
