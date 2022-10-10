@@ -5,6 +5,9 @@ virtualenv:
 requirements:
 	pip3 install -r requirements.txt
 
+lint:
+	pylint ./app
+
 docker_build:
 	DB_HOST="127.0.0.1" DB_USERNAME="app_user" DB_PASSWORD="app_pass123" docker build --no-cache -f Dockerfile . -t student_crud_api:1.0
 

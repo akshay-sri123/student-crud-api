@@ -1,3 +1,6 @@
+"""
+Configurations
+"""
 import os
 
 DEBUG = True

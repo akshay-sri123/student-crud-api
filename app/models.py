@@ -1,10 +1,13 @@
+"""
+Model class for students
+"""
 from datetime import datetime
 import enum
 import flask_sqlalchemy
 from flask_migrate import Migrate
 
 db = flask_sqlalchemy.SQLAlchemy()
-migrate =  Migrate()
+migrate = Migrate()
 
 
 class GenderEnum(enum.Enum):
@@ -16,7 +19,7 @@ class GenderEnum(enum.Enum):
     OTHER = 'Other'
 
 
-class Students(db.Model):
+class Students(db.Model): # pylint: disable=too-few-public-methods
     """
     DB class for students
     """
