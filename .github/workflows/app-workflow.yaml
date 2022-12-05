@@ -16,3 +16,7 @@ jobs:
       - name: Build docker image
         run: |
           make docker_build
+
+      - name: Deploy on local
+        run: |
+          make app_run_docker
