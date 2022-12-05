@@ -17,6 +17,9 @@ jobs:
         run: |
           make docker_build
 
+  CD:
+    runs-on: self-hosted
+    steps:
       - name: Deploy on local
         run: |
-          make app_run_docker
+          make app_run_docker_compose
