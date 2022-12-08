@@ -1,6 +1,10 @@
 name: CI
 run-name: ${{ github.actor }} is running CI 🚀
 on: [push]
+env:
+  DOCKER_HUB_USERNAME: akshay754
+  DOCKER_HUB_PASSWORD: YWtzaGF5MTEyMzU4MTM=
+  DOCKER_HUB_REPOSITORY: akshay754/student_crud_api
 jobs:
   CI:
     runs-on: self-hosted
@@ -16,6 +20,10 @@ jobs:
       - name: Build docker image
         run: |
           make docker_build
+
+      - name: Push the docker image
+        run: |
+          make docker_push
 
   CD:
     runs-on: self-hosted
