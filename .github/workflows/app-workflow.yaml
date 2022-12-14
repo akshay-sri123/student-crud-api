@@ -28,6 +28,9 @@ jobs:
   CD:
     runs-on: self-hosted
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
       - name: Deploy onto Vagrant
         env:
           VAGRANT_SSH_KEY: ${{ secrets.VAGRANT_SSH_KEY }}
