@@ -1,5 +1,5 @@
 name: CI
-run-name: ${{ github.actor }} is running CI 🚀
+run-name: Application Pipeline
 on: [push]
 env:
   DOCKER_HUB_USERNAME: akshay754
@@ -28,6 +28,17 @@ jobs:
   CD:
     runs-on: self-hosted
     steps:
-      - name: Deploy on local
+      - name: Deploy onto Vagrant
+        env:
+          VAGRANT_SSH_KEY: ${{ secrets.VAGRANT_SSH_KEY }}
+        shell: bash
         run: |
-          make app_run_docker_compose
+          eval `ssh-agent -s`
+          mkdir -p /tmp/.ssh
+          echo "$VAGRANT_SSH_KEY" | tr -d '\r' > /tmp/.ssh/id_rsa
+          chmod 0700 /tmp/.ssh
+          chmod 0400 /tmp/.ssh/id_rsa
+          ssh-add  /tmp/.ssh/id_rsa
+          scp -i /tmp/.ssh/id_rsa -P 2222 docker-compose.yaml vagrant@127.0.0.1:/home/vagrant
+          scp -i /tmp/.ssh/id_rsa -P 2222 init.sql vagrant@127.0.0.1:/home/vagrant
+          ssh -i /tmp/.ssh/id_rsa -p 2222 vagrant@127.0.0.1 "sudo docker compose up"

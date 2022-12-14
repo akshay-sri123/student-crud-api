@@ -21,7 +21,9 @@ docker_build: set_global_env
 docker_push: set_global_env
 	echo ${DOCKER_HUB_PASSWORD} | base64 -d | docker login --username ${DOCKER_HUB_USERNAME} --password-stdin
 	docker tag student_crud_api:$(GIT_HASH) $(DOCKER_HUB_REPOSITORY):$(GIT_HASH)
+	docker tag student_crud_api:$(GIT_HASH) $(DOCKER_HUB_REPOSITORY):latest
 	docker push $(DOCKER_HUB_REPOSITORY):$(GIT_HASH)
+	docker push $(DOCKER_HUB_REPOSITORY):latest
 
 app_run_docker:
 	docker run -it -e DB_USERNAME="app_user" -e DB_HOST="127.0.0.1" -e DB_PASSWORD="app_pass123" -p 5000:5000 --network host student_crud_api:1.0

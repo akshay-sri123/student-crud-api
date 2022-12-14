@@ -2,7 +2,7 @@ version: '3'
 
 services:
   student_crud_api:
-    image: student_crud_api:1.0
+    image: akshay754/student_crud_api:latest
     environment:
       DB_USERNAME: app_user
       DB_PASSWORD: app_pass123
