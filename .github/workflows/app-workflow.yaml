@@ -27,6 +27,7 @@ jobs:
 
   CD:
     runs-on: self-hosted
+    if: github.event.pull_request.merged == true
     needs: CI
     steps:
       - name: Check out repository code
@@ -43,7 +44,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: Updated version
-        
 
   #     - name: Deploy onto Vagrant
   #       env:
