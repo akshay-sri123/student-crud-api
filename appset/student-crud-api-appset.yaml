@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: student-crud-api-appset-preview
+  name: student-crud-api-preview-env
   namespace: argocd
 spec:
   generators:
@@ -14,17 +14,22 @@ spec:
             key: token
           labels:
             - preview
-        requeueAfterSeconds: 300
+        requeueAfterSeconds: 15
   template:
     metadata:
-      name: student-crud-api
+      name: student-crud-api-preview-env
     spec:
-      destination:
-        namespace: test-branch
-        server: https://kubernetes.default.svc
-      project: default
       source:
         path: manifests/api
         repoURL: https://github.com/akshay-sri123/gitops-student-crud-api
-        targetRevision: HEAD
-      syncPolicy: {}
+        targetRevision: "{{head_sha}}"
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
+      destination:
+        namespace: student-crud-api-preview-env
+        server: https://kubernetes.default.svc
