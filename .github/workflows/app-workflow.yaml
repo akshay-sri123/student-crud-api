@@ -36,7 +36,7 @@ jobs:
         run: |
           git_hash=$(git rev-parse "$GITHUB_SHA")
           version=$(cat ./helm/student-crud-api/values.yaml | grep tag: | awk '{print $2}')
-          sed -i "s/$version/${GITHUB_REF##*/}$git_hash/" ./helm/student-crud-api/values.yaml
+          sed -i "s/$version/$git_hash/" ./helm/student-crud-api/values.yaml
 
       - name: Commit changes
         uses: devops-infra/action-commit-push@v0.3
