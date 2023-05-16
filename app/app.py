@@ -10,7 +10,7 @@ from . import create_app, database
 
 app = create_app()
 
-@app.route('/get', methods=['GET'])
+@app.route('/who', methods=['GET'])
 def get():
     """
     Function to fetch info for all students
