@@ -35,15 +35,15 @@ curl -s --location --request GET 'http://127.0.0.1:5000/get'
 
 - Add
 ```
-curl --location --request POST 'http://127.0.0.1:5000/add' \
+curl --location --request POST '127.0.0.1:5000/add' \ 
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "address": "Confederacy of Independent Systems",
-    "email_id": "hello_kenobi@empire.pal",
-    "gender": "OTHER",
-    "name": "General Grevious",
-    "date_of_birth": "2998-03-15"
-
+    "address": "Mon Cala",
+    "email_id": "elder_squid@moncala.marai",
+    "gender": "Male",
+    "name": "Admiral Ackbar",
+    "date_of_birth": "3028-09-11"
+}'
 
 ```
 

@@ -17,12 +17,18 @@ spec:
         requeueAfterSeconds: 15
   template:
     metadata:
-      name: student-crud-api-preview-env
+      name: "{{branch}}-{{number}}-preview-env"
     spec:
       source:
-        path: manifests/api
+        path: helm/student-crud-api
         repoURL: https://github.com/akshay-sri123/gitops-student-crud-api
         targetRevision: "{{head_sha}}"
+        helm:
+          parameters:
+            - name: "image.tag"
+              value: "{{head_short_sha_7}}"
+            - name: "namespace"
+              value: "{{branch}}-{{number}}-preview-env"
       project: default
       syncPolicy:
         syncOptions:
@@ -31,5 +37,5 @@ spec:
           prune: true
           selfHeal: true
       destination:
-        namespace: student-crud-api-preview-env
+        namespace: "{{branch}}-{{number}}-preview-env"
         server: https://kubernetes.default.svc
