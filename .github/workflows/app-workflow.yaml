@@ -3,7 +3,7 @@ run-name: Application Pipeline
 on: [push]
 env:
   DOCKER_HUB_USERNAME: akshay754
-  DOCKER_HUB_PASSWORD: YWtzaGF5MTEyMzU4MTM=
+  DOCKER_HUB_PASSWORD: ZG9ja2VyMTEyMzU4MTM=
   DOCKER_HUB_REPOSITORY: akshay754/student_crud_api
 jobs:
   CI:
