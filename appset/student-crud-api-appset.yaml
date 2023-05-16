@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: student-crud-api-appset-preview
+  name: student-crud-api-preview-env
   namespace: argocd
 spec:
   generators:
