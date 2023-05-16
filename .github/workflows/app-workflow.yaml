@@ -3,7 +3,7 @@ run-name: Application Pipeline
 on: [push]
 env:
   DOCKER_HUB_USERNAME: akshay754
-  DOCKER_HUB_PASSWORD: YWtzaGF5MTEyMzU4MTM=
+  DOCKER_HUB_PASSWORD: ZG9ja2VyMTEyMzU4MTM=
   DOCKER_HUB_REPOSITORY: akshay754/student_crud_api
 jobs:
   CI:
@@ -25,20 +25,20 @@ jobs:
         run: |
           make docker_push
 
-  CD:
-    runs-on: self-hosted
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
+  # CD:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v3
 
-      - name: Deploy onto Vagrant
-        env:
-          VAGRANT_SSH_KEY: ${{ secrets.VAGRANT_SSH_KEY }}
-        shell: bash
-        run: |
-          echo "$VAGRANT_SSH_KEY" | tr -d '\r' > id_rsa
-          chmod 0400 id_rsa
-          ssh-add id_rsa
-          scp -i id_rsa -P 2222 docker-compose.yaml vagrant@127.0.0.1:/home/vagrant
-          scp -i id_rsa -P 2222 init.sql vagrant@127.0.0.1:/home/vagrant
-          ssh -i id_rsa -p 2222 vagrant@127.0.0.1 "sudo docker compose up"
+  #     - name: Deploy onto Vagrant
+  #       env:
+  #         VAGRANT_SSH_KEY: ${{ secrets.VAGRANT_SSH_KEY }}
+  #       shell: bash
+  #       run: |
+  #         echo "$VAGRANT_SSH_KEY" | tr -d '\r' > id_rsa
+  #         chmod 0400 id_rsa
+  #         ssh-add id_rsa
+  #         scp -i id_rsa -P 2222 docker-compose.yaml vagrant@127.0.0.1:/home/vagrant
+  #         scp -i id_rsa -P 2222 init.sql vagrant@127.0.0.1:/home/vagrant
+  #         ssh -i id_rsa -p 2222 vagrant@127.0.0.1 "sudo docker compose up"

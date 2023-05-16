@@ -1,5 +1,5 @@
 DOCKER_HUB_USERNAME = akshay754
-DOCKER_HUB_PASSWORD = YWtzaGF5MTEyMzU4MTM=
+DOCKER_HUB_PASSWORD = ZG9ja2VyMTEyMzU4MTM=
 DOCKER_HUB_REPOSITORY = akshay754/student_crud_api
 
 set_global_env:
@@ -16,13 +16,13 @@ lint:
 	pylint ./app
 
 docker_build: set_global_env
-	DB_HOST="127.0.0.1" DB_USERNAME="app_user" DB_PASSWORD="app_pass123" docker build --no-cache -f Dockerfile . -t student_crud_api:$(GIT_HASH)
+	DB_HOST="127.0.0.1" DB_USERNAME="app_user" DB_PASSWORD="app_pass123" docker build --no-cache -f Dockerfile . -t student_crud_api:$(GITHUB_SHA)
 
 docker_push: set_global_env
 	echo ${DOCKER_HUB_PASSWORD} | base64 -d | docker login --username ${DOCKER_HUB_USERNAME} --password-stdin
-	docker tag student_crud_api:$(GIT_HASH) $(DOCKER_HUB_REPOSITORY):$(GIT_HASH)
-	docker tag student_crud_api:$(GIT_HASH) $(DOCKER_HUB_REPOSITORY):latest
-	docker push $(DOCKER_HUB_REPOSITORY):$(GIT_HASH)
+	docker tag student_crud_api:$(GITHUB_SHA) $(DOCKER_HUB_REPOSITORY):$(GITHUB_SHA)
+	docker tag student_crud_api:$(GITHUB_SHA) $(DOCKER_HUB_REPOSITORY):latest
+	docker push $(DOCKER_HUB_REPOSITORY):$(GITHUB_SHA)
 	docker push $(DOCKER_HUB_REPOSITORY):latest
 
 app_run_docker:
