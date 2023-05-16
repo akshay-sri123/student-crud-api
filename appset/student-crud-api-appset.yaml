@@ -21,7 +21,7 @@ spec:
     spec:
       source:
         path: helm/student-crud-api
-        repoURL: https://github.com/akshay-sri123/gitops-student-crud-api
+        repoURL: https://github.com/akshay-sri123/student-crud-api
         targetRevision: "{{head_sha}}"
         helm:
           parameters:

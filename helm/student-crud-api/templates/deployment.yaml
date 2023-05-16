@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: student-crud-api
+    env: dev
+    managed-by: Helm
+spec:
+  selector:
+    matchLabels:
+      app: student-crud-api
+      env: dev
+  {{- if .Values.replica_count }}
+  replicas: {{ .Values.replica_count }}
+  {{- end }}
+  template:
+    metadata:
+      labels:
+        app: student-crud-api
+        env: dev
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: {{ .Values.image.repository }}:{{ $.Values.image.tag }}
+        env:
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: api-db-params
+                key: db-password
+          - name: DB_USERNAME
+            value: "app_user"
+          - name: DB_HOST
+            value: "postgres"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: {{ .Values.containerPort }}

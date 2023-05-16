@@ -1,0 +1,12 @@
+replica_count: 2
+name: student-crud-api
+namespace: master
+image:
+  repository: akshay754/student_crud_api
+  tag: 10f0ffc
+containerPort: 5000
+
+service:
+  type: ClusterIP
+  port: 5000
+  targetPort: 5000
