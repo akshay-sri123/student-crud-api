@@ -27,6 +27,7 @@ jobs:
 
   CD:
     runs-on: self-hosted
+    needs: CI
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
