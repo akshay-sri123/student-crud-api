@@ -77,7 +77,7 @@ def get_by_id(student_id):
 
     return json.dumps(student_info, default=str), 200
 
-@app.route('/del/<student_id>', methods=['DELETE'])
+@app.route('/rem/<student_id>', methods=['DELETE'])
 def delete_by_id(student_id):
     """
     Function to delete a student by their id
@@ -85,7 +85,7 @@ def delete_by_id(student_id):
     database.delete_by_id(Students, student_id)
     return json.dumps("Deleted"), 200
 
-@app.route('/update/<student_id>', methods=['PUT'])
+@app.route('/replace/<student_id>', methods=['PUT'])
 def update_by_id(student_id):
     """
     Function to update a student by their id
