@@ -10,7 +10,7 @@ from . import create_app, database
 
 app = create_app()
 
-@app.route('/who', methods=['GET'])
+@app.route('/get', methods=['GET'])
 def get():
     """
     Function to fetch info for all students
@@ -58,7 +58,7 @@ def add():
     return json.dumps("Added"), 200
 
 
-@app.route('/who/<student_id>', methods=['GET'])
+@app.route('/get/<student_id>', methods=['GET'])
 def get_by_id(student_id):
     """
     Function to fetch a student by their id
