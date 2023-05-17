@@ -27,7 +27,7 @@ jobs:
 
   CD:
     runs-on: self-hosted
-    if: github.event.pull_request.merged == true
+    if: github.ref == 'refs/heads/preview-environments'
     needs: CI
     steps:
       - name: Check out repository code
