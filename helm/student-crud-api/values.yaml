@@ -3,7 +3,7 @@ name: student-crud-api
 namespace: master
 image:
   repository: akshay754/student_crud_api
-  tag: 49c3a24aaa8308c31be85c5f753cdaadeed70800
+  tag: 12f179f9bc4aa98db3d6b56d4b011477203a73ba
 containerPort: 5000
 
 service:
